@@ -1,0 +1,48 @@
+## Результаты сборки
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+artifacts/
+
+## Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+*.DotSettings.user
+
+## Тесты и покрытие
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+coverage*.info
+
+## MSBuild / NuGet
+*.binlog
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+*.nuget.props
+*.nuget.targets
+
+## Локальные секреты и переменные окружения
+appsettings.*.local.json
+*.env
+.env
+.env.*
+secrets.json
+
+## ОС и прочий мусор
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.tmp

@@ -1,0 +1,36 @@
+<Project>
+
+  <!--
+    Единые версии пакетов для всего решения (Central Package Management).
+
+    Почему это здесь: плавающие версии "9.0.*" в разных проектах резолвились
+    в РАЗНЫЕ сборки EF Core (TaskApi -> 9.0.21 через Microsoft.EntityFrameworkCore.Design,
+    TaskApi.Tests -> 9.0.1 как минимальную зависимость Npgsql.EntityFrameworkCore.PostgreSQL).
+    Из-за PrivateAssets="all" у Design версия 9.0.21 не доезжала до тестового проекта,
+    и компилятор падал с CS1705 / MSB3277. Теперь версия EF Core объявлена ровно один раз.
+  -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- EF Core: основная библиотека и инструменты должны быть строго одной версии -->
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="9.0.21" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.21" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.21" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="RabbitMQ.Client" Version="7.2.2" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="7.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.21" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+</Project>

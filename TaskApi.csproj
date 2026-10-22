@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <!-- Версии пакетов — в Directory.Packages.props (Central Package Management) -->
+  <ItemGroup>
+    <!-- Явная ссылка: задаёт версию EF Core для всего проекта, а не «минимум по транзитиву» -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="RabbitMQ.Client" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+
+  <!-- Тесты лежат в подпапке, исключаем их из API-проекта -->
+  <ItemGroup>
+    <Compile Remove="Tests/**" />
+    <!-- Web SDK по умолчанию тянет **/*.json как Content: без этого файлы из Tests\obj и Tests\bin
+         копировались в bin и попадали в publish/образ -->
+    <Content Remove="Tests/**" />
+    <None Remove="Tests/**" />
+    <EmbeddedResource Remove="Tests/**" />
+  </ItemGroup>
+
+</Project>
